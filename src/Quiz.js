@@ -8,33 +8,28 @@ export default function Quiz() {
     const [reveal , setReveal] = React.useState(false)
     const [reset , setReset] = React.useState(false)
     const [selected , setSelected] = React.useState(false)
-    const [answers, setAnswers] = React.useState([])
-
+    
     React.useEffect(()=>{
+        console.log("fetch called")
         fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
             .then(res=> res.json())
             .then(data => setMyData(data.results))
-   
-    },[])
+      },[])
+      console.log(myData)
 
-    React.useEffect(()=> {
-        const allAnswers = [...myData.incorrect_answers, myData.correct_answers]
-        setAnswers(allAnswers.sort(()=> Math.random() - 0.5))
-        console.log("UseEffect All Answers" + allAnswers)
-    },[myData.correct_answers, myData.incorrect_answers])
-    console.log(answers)
-    console.log(myData)
-    //Display questions and pass props
+    // //Display questions and pass props
     const displayQuestions = myData.map((question, index) => (
         <Questions 
             key={index}
-            question={question.question}
+            question={decodeHtml(question.question)}
+            iAnswers={question.incorrect_answers}
+            cAnswer={question.correct_answer}
             reset={reset}
             reveal={reveal}
             count={correctCount}
         />
     ))
-    // Fix HTML elements
+    // // Fix HTML elements
     function decodeHtml(html) {
         var txt = document.createElement('textarea');
         txt.innerHTML = html;
@@ -55,7 +50,7 @@ export default function Quiz() {
 
     return (
         <div className="quiz-container">
-            <h2>{displayQuestions}</h2>
+            {displayQuestions}
             <button
                 onClick={revealAnswers}
                 className="submit-button"

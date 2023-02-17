@@ -1,5 +1,5 @@
 import React from 'react'
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
 import Cover from './Cover'
 import Quiz from './Quiz'
 
@@ -16,7 +16,7 @@ export default function App() {
   
     return (
       <main>
-          {/*conditionaly render cover page untill start button is clicked */}
+          {/* conditionaly render cover page untill start button is clicked */}
           {coverPage ? <Cover handleStart={handleStart} />
           :<Quiz />}
       </main>
