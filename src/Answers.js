@@ -1,9 +1,14 @@
 import React from 'react'
 
-export default function Answers() {
+export default function Answers(props) {
+
+  const answerOptions = props.answers.map(options => (
+    <div className='answer'>{options}</div>
+  ))
+
   return (
     <div>
-      <div>Answers</div>
+      <div className='answer-container'>{answerOptions}</div>
       {console.log('Answers')}
     </div>
   )

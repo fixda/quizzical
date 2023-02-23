@@ -4,6 +4,7 @@ import Answers from './Answers'
 export default function Questions(props) {
 
   const [answers, setAnswers] = React.useState([])
+  const [selected, setSelected] = React.useState(false)
 
   React.useEffect(()=> {
     const allAnswers = [...props.iAnswers, props.cAnswer]
@@ -15,10 +16,14 @@ export default function Questions(props) {
 
   return (
     <div>
-      <div>{props.question}</div>
-      <Answers 
-      
-      />
+      <div className='question-container'>{props.question}
+        <Answers 
+          answers={answers}
+          cAnswer={props.cAnswer}
+          selected={selected}
+
+        />
+      </div>
       {console.log('Questions')}
     </div>
   )
