@@ -11,20 +11,30 @@ export default function Questions(props) {
     setAnswers(allAnswers.sort(()=> Math.random() - 0.5))
     // console.log("UseEffect All Answers" + allAnswers)
   },[props.cAnswer, props.iAnswers])
-  console.log(answers)  
-  console.log(props.cAnswer)
+  // console.log(answers)  
+  // console.log(props.cAnswer)
+  function selectAnswer(){
+    setSelected(prev => !prev)
+    console.log("clicked" + selected)
+  }
+  //
+ 
+
+  const displayAnswers = answers.map((ans, index)=>(
+    <Answers 
+    key={index}
+    answers={ans}
+    cAnswer={props.cAnswer}
+    selected={selected}
+    handleClick={selectAnswer}
+  />
+  ))
 
   return (
     <div>
       <div className='question-container'>{props.question}
-        <Answers 
-          answers={answers}
-          cAnswer={props.cAnswer}
-          selected={selected}
-
-        />
+      <div className='answers-container'>{displayAnswers}</div>
       </div>
-      {console.log('Questions')}
     </div>
   )
 }

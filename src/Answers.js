@@ -1,15 +1,18 @@
 import React from 'react'
 
 export default function Answers(props) {
+  const styles = {
+    backgroundColor: props.selected ? "blue" : "white"
+  }
 
-  const answerOptions = props.answers.map(options => (
-    <div className='answer'>{options}</div>
-  ))
-
+ 
   return (
     <div>
-      <div className='answer-container'>{answerOptions}</div>
-      {console.log('Answers')}
+      <div 
+        className='answer' 
+        onClick={props.handleClick} 
+        style={styles}
+      >{props.answers}</div>
     </div>
   )
 }
