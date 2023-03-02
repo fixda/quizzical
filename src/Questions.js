@@ -17,9 +17,7 @@ export default function Questions(props) {
     setSelected(prev => !prev)
     console.log("clicked" + selected)
   }
-  //
- 
-
+  
   const displayAnswers = answers.map((ans, index)=>(
     <Answers 
     key={index}

@@ -5,7 +5,6 @@ export default function Answers(props) {
     backgroundColor: props.selected ? "blue" : "white"
   }
 
- 
   return (
     <div>
       <div 
