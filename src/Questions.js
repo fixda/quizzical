@@ -1,5 +1,5 @@
 import React from 'react'
-import Answers from './Answers'
+
 
 export default function Questions(props) {
 
@@ -9,29 +9,43 @@ export default function Questions(props) {
   React.useEffect(()=> {
     const allAnswers = [...props.iAnswers, props.cAnswer]
     setAnswers(allAnswers.sort(()=> Math.random() - 0.5))
-    // console.log("UseEffect All Answers" + allAnswers)
   },[props.cAnswer, props.iAnswers])
-  // console.log(answers)  
-  // console.log(props.cAnswer)
-  function selectAnswer(){
-    setSelected(prev => !prev)
-    console.log("clicked" + selected)
+ 
+  function selectAnswer(id){
+    setSelected(prev => ({
+      ...prev, [id]: !prev[id]
+    }))
   }
   
-  const displayAnswers = answers.map((ans, index)=>(
-    <Answers 
-    key={index}
-    answers={ans}
-    cAnswer={props.cAnswer}
-    selected={selected}
-    handleClick={selectAnswer}
-  />
-  ))
+  // const displayAnswers = answers.map((ans, index)=>(
+  //   <Answers 
+  //   key={index}
+  //   answers={ans}
+  //   cAnswer={props.cAnswer}
+  //   selected={selected}
+  //   handleClick={selectAnswer}
+  // />
+  // ))
+  const styles = (index) =>({
+    backgroundColor: selected[index] ? "blue" : "white"
+  })
 
   return (
     <div>
-      <div className='question-container'>{props.question}
-      <div className='answers-container'>{displayAnswers}</div>
+      <div className='question-container'>
+        {props.question}
+        <div className='answers-container'>
+          {answers.map((ans,index) => (
+              <div
+                key={index}
+                className="answer"
+                onClick={() => selectAnswer(index)}
+                style={styles(index)}
+              >
+                {ans}
+              </div>
+          ))}
+        </div>
       </div>
     </div>
   )
