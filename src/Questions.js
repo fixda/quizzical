@@ -17,30 +17,29 @@ export default function Questions(props) {
     }))
   }
   
-  // const displayAnswers = answers.map((ans, index)=>(
-  //   <Answers 
-  //   key={index}
-  //   answers={ans}
-  //   cAnswer={props.cAnswer}
-  //   selected={selected}
-  //   handleClick={selectAnswer}
-  // />
-  // ))
-  const styles = (index) =>({
-    backgroundColor: selected[index] ? "blue" : "white"
+  const styles = (ans, index) =>({
+    backgroundColor: selected[index] ? 
+                                    props.reveal ? 
+                                                ans===props.cAnswer ?
+                                                                   "green" :
+                                               "pink" :
+                                    "blue" :
+                        props.reveal && ans===props.cAnswer?
+                                                        "lightgreen" :
+                                   "white"
   })
 
   return (
     <div>
       <div className='question-container'>
         {props.question}
-        <div className='answers-container'>
+        <div className='answer-container'>
           {answers.map((ans,index) => (
               <div
                 key={index}
                 className="answer"
                 onClick={() => selectAnswer(index)}
-                style={styles(index)}
+                style={styles(ans, index)}
               >
                 {ans}
               </div>

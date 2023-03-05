@@ -39,6 +39,7 @@ export default function Quiz() {
         setReset(prev => !prev)
     }
     function revealAnswers(){
+        console.log("reveal clicked")
         setReveal(prev => !prev)
         return(
             <div>
