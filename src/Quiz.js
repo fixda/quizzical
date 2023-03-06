@@ -1,12 +1,12 @@
 import React from 'react'
 import Questions from './Questions'
+import App from './App'
 import { nanoid } from 'nanoid'
 
-export default function Quiz() {
+export default function Quiz(props) {
     const [myData, setMyData] = React.useState([])
     const [correctCount, setCorrectCount] = React.useState(0)
     const [reveal , setReveal] = React.useState(false)
-    const [reset , setReset] = React.useState(false)
     const [selected , setSelected] = React.useState(false)
     
     React.useEffect(()=>{
@@ -24,9 +24,9 @@ export default function Quiz() {
             question={decodeHtml(question.question)}
             iAnswers={question.incorrect_answers}
             cAnswer={question.correct_answer}
-            reset={reset}
             reveal={reveal}
             count={correctCount}
+            decode={decodeHtml}
         />
     ))
     // // Fix HTML elements
@@ -35,26 +35,25 @@ export default function Quiz() {
         txt.innerHTML = html;
         return txt.value;
       }
-    function resetGame(){
-        setReset(prev => !prev)
-    }
     function revealAnswers(){
         setReveal(prev => !prev)
-        return(
-            <div className="question-container">
-                <span>You scored {correctCount}/5 correct answers</span> 
-                <button className="restart-button" onClick={resetGame}>Play again</button>
-            </div>
-        )
+
     }
 
     return (
         <div className="quiz-container">
             {displayQuestions}
-            <button
+            {reveal ? 
+                <div className>
+                    <span>You scored {correctCount}/5 correct answers</span> 
+                    <button className="restart-button" onClick={props.reset}>Play again</button>
+                </div>
+            
+                :<button
                 onClick={revealAnswers}
                 className="submit-button"
                 >Check Answers</button>
+            }
         </div>
      )
 }

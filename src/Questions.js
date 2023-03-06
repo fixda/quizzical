@@ -21,12 +21,12 @@ export default function Questions(props) {
     backgroundColor: selected[index] ? 
                                     props.reveal ? 
                                                 ans===props.cAnswer ?
-                                                                   "green" :
-                                               "pink" :
-                                    "blue" :
+                                                                   "#94D7A2" :
+                                               "#F8BCBC50" :
+                                    "#D6DBF550" :
                         props.reveal && ans===props.cAnswer?
-                                                        "lightgreen" :
-                                   "white"
+                                                        "#94D7A2" :
+                                   "#FFFFFF50"
   })
 
   return (
@@ -41,7 +41,7 @@ export default function Questions(props) {
                 onClick={() => selectAnswer(index)}
                 style={styles(ans, index)}
               >
-                {ans}
+                {props.decode(ans)}
               </div>
           ))}
         </div>

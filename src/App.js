@@ -12,13 +12,15 @@ export default function App() {
         setCoverPage(!coverPage)
       )
     }
-  
+    
   
     return (
       <main>
           {/* conditionaly render cover page untill start button is clicked */}
           {coverPage ? <Cover handleStart={handleStart} />
-          :<Quiz />}
+          :<Quiz
+            reset={handleStart}
+          />}
       </main>
     )
   }

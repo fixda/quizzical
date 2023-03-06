@@ -27,9 +27,11 @@ main {
     align-items: center;
 }
 .question-container{
+
+    width: 500px;
     border-bottom: .794239px solid #DBDEF0;
     padding-bottom: 10px;
-    margin: 0;
+    margin: 10 0 0 0;
 }
 .question{
     font-size: .5em;
@@ -40,6 +42,7 @@ main {
     
 }
 .answer{
+    color: #293264;
     margin: 0 5px 0 5px;
     display: flex;
     justify-content: center;
